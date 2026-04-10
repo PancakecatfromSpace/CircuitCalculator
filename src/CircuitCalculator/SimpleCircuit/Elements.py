@@ -1017,6 +1017,40 @@ class PowerLabel(schemdraw.elements.Label):
             rotate = 90
         self.label(plabel, rotate=rotate, halign='center', ofst=(0, offset))
 
+@simple_circuit_element
+@extension.resistor
+class Diode(schemdraw.elements.Diode):
+    def __init__(self, *args, name: str, R: float = float('nan'), show_name: bool = True, show_value: bool = True, reverse: bool = False, precision: int = 3, **kwargs):
+        super().__init__(*args, reverse=reverse, **kwargs)
+        try:
+            R = float(R)
+        except ValueError:
+            R = float('nan')
+        if np.isnan(R):
+            show_value = False
+        self._R = R
+        label = ''
+        label += f'{name}' if show_name else ''
+        label += '=' if  show_name and show_value else ''
+        label += dsp.print_resistance(self.R, precision=precision) if show_value else ''
+        self.label(label, rotate=True, loc='value_label', halign='center')
+
+    @property
+    def R(self) -> float:
+        return self._R
+
+    @property
+    def G(self) -> float:
+        return 1/self._R
+
+    @property
+    def is_reverse(self) -> bool:
+        return False
+
+    @property
+    def type(self) -> str:
+        return 'diode'
+
 i_label_args : dict[Any, dict[str, float]] = {
     Resistor : {'ofst' : 0},
     Conductance : {'ofst' : 1.4},
@@ -1030,5 +1064,6 @@ i_label_args : dict[Any, dict[str, float]] = {
     ComplexCurrentSource : {'ofst' : -2.8},
     ACVoltageSource : {'ofst' : -3.8},
     RealVoltageSource: {'ofst' : -0.8},
-    RealCurrentSource: {'ofst' : 1.4}
+    RealCurrentSource: {'ofst' : 1.4},
+    Diode: {'ofst' : 1.4}
 }
