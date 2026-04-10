@@ -138,3 +138,17 @@ dmypy.json
 
 /test*.py
 /test*.ipynb
+examples/python/example_circuit_1.ipynb
+examples/python/example_circuit_9.ipynb
+examples/python/example_circuit_10.ipynb
+examples/simple_circuit/example_circuit_1.ipynb
+examples/simple_circuit/example_circuit_2.ipynb
+examples/simple_circuit/example_circuit_3.ipynb
+examples/simple_circuit/example_circuit_4.ipynb
+examples/simple_circuit/example_circuit_5.ipynb
+examples/simple_circuit/example_circuit_6.ipynb
+examples/simple_circuit/example_circuit_7.ipynb
+examples/simple_circuit/example_circuit_8.ipynb
+examples/simple_circuit/example_circuit_9.ipynb
+examples/simple_circuit/example_circuit_10.ipynb
+examples/simple_circuit/example_circuit_11.ipynb
